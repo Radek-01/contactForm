@@ -33,12 +33,11 @@ function appendRowToTable(data) {
     tblRowEl.append(thNameEl, thSurnameEl, thEmailEl, thMessageEl);
     tblHeadEl.append(tblRowEl);
     table.append(tblHeadEl);
-
   }
 
- const { name, surname, email, message } = data;
+  const { name, surname, email, message } = data;
 
-  const addNewRow()
+  //   const addNewRow()
 
   //   const trEl = document.createElement('tr');
   //   const tdEl = document.createElement('td');
