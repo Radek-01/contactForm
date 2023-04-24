@@ -1,4 +1,9 @@
 "use strict";
 "use strict";
 
-console.log("test");
+function validateEmail(email) {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(email);
+}
+
+console.log(validateEmail("dlasiecki@gmail.com"));
