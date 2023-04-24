@@ -31,24 +31,29 @@ function appendRowToTable(data) {
   //   const { name, surname, email, message } = data;
   //comment
   const addNewRow = ({ name, surname, email, message }) => {
+    const dataArray = [name, surname, email, message];
     // const {name, surname, email, message} = data;
     const trow = document.createElement("tr");
-    const tdName = document.createElement("td");
-    tdName.textContent = name;
-    const tdSurname = document.createElement("td");
-    tdSurname.textContent = surname;
-    const tdEmail = document.createElement("td");
-    tdEmail.textContent = email;
-    const tdMessage = document.createElement("td");
-    tdMessage.textContent = message;
+    dataArray.forEach((value) => {
+      const td = document.createElement("td");
+      td.textContent = value;
+      trow.append(td);
+    });
 
-    trow.append(tdName, tdSurname, tdEmail, tdMessage);
+    // const tdName = document.createElement("td");
+    // tdName.textContent = name;
+    // const tdSurname = document.createElement("td");
+    // tdSurname.textContent = surname;
+    // const tdEmail = document.createElement("td");
+    // tdEmail.textContent = email;
+    // const tdMessage = document.createElement("td");
+    // tdMessage.textContent = message;
+
+    // trow.append(tdName, tdSurname, tdEmail, tdMessage);
     return trow;
   };
-  table.append(addNewRow(data));
 
-  //   const trEl = document.createElement('tr');
-  //   const tdEl = document.createElement('td');
+  table.append(addNewRow(data));
 }
 
 console.log(
