@@ -21,11 +21,11 @@ function handleSubmit(event) {
   let surnameWords = surname.split(" ");
   const regex = /\d/;
   if (
-    !(namewords.length > 2) &&
+    namewords.length === 1 &&
     !regex.test(name) &&
-    !(surnameWords.length > 2) &&
+    (surnameWords.length ===1)  &&
     !regex.test(surname) &&
-    validateEmail(email) === true &&
+    validateEmail(email)  &&
     surname.length > 3 &&
     email.length > 1
   ) {
