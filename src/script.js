@@ -66,3 +66,11 @@ console.log(
     message: "Msg",
   })
 );
+console.log(
+  appendRowToTable({
+    name: "Daw",
+    surname: "Las",
+    email: "dlasiecki@gmail.com",
+    message: "Msg1",
+  })
+);
