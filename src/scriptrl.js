@@ -9,7 +9,7 @@ function appendRowToTable(data) {
   table.classList.add("table");
   table.classList.add("table-striped");
   table.classList.add("table-bordered");
-  //prepare table header
+  //prepare table header and body
   if (!table.innerHTML) {
     const tblHeadEl = document.createElement("thead");
     const tblRowEl = document.createElement("tr");
@@ -29,6 +29,8 @@ function appendRowToTable(data) {
     tblRowEl.append(thNameEl, thSurnameEl, thEmailEl, thMessageEl);
     tblHeadEl.append(tblRowEl);
     table.append(tblHeadEl);
+
+    table.append(document.createElement("tbody"));
   }
 
   const addNewRow = ({ name, surname, email, message }) => {
@@ -43,7 +45,7 @@ function appendRowToTable(data) {
     return trow;
   };
 
-  table.append(addNewRow(data));
+  table.querySelector("tbody").append(addNewRow(data));
 }
 
 console.log(
