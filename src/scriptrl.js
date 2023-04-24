@@ -28,8 +28,6 @@ function appendRowToTable(data) {
     table.append(tblHeadEl);
   }
 
-  //   const { name, surname, email, message } = data;
-  //comment
   const addNewRow = ({ name, surname, email, message }) => {
     const dataArray = [name, surname, email, message];
     // const {name, surname, email, message} = data;
@@ -39,17 +37,6 @@ function appendRowToTable(data) {
       td.textContent = value;
       trow.append(td);
     });
-
-    // const tdName = document.createElement("td");
-    // tdName.textContent = name;
-    // const tdSurname = document.createElement("td");
-    // tdSurname.textContent = surname;
-    // const tdEmail = document.createElement("td");
-    // tdEmail.textContent = email;
-    // const tdMessage = document.createElement("td");
-    // tdMessage.textContent = message;
-
-    // trow.append(tdName, tdSurname, tdEmail, tdMessage);
     return trow;
   };
 
@@ -70,5 +57,13 @@ console.log(
     surname: "Las",
     email: "dlasiecki@gmail.com",
     message: "Msg1",
+  })
+);
+console.log(
+  appendRowToTable({
+    name: "Oli",
+    surname: "Las",
+    email: "olasiecka@gmail.com",
+    message: "Msg2",
   })
 );
