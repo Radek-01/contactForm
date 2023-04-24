@@ -6,6 +6,9 @@ function appendRowToTable(data) {
     table = document.createElement("table");
     body.append(table);
   }
+  table.classList.add("table");
+  table.classList.add("table-striped");
+  table.classList.add("table-bordered");
   //prepare table header
   if (!table.innerHTML) {
     const tblHeadEl = document.createElement("thead");
