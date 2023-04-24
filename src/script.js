@@ -5,72 +5,40 @@ function validateEmail(email) {
   return regex.test(email);
 }
 
-function appendRowToTable(data) {
-  const body = document.querySelector("body");
-  let table = document.querySelector("table");
+const button = document.querySelector("#submitButton");
 
-  if (!table) {
-    table = document.createElement("table");
-    body.append(table);
-  }
-  //prepare table header
-  if (!table.innerHTML) {
-    const tblHeadEl = document.createElement("thead");
-    const tblRowEl = document.createElement("tr");
-
-    const thNameEl = document.createElement("th");
-    thNameEl.textContent = "Name";
-
-    const thSurnameEl = document.createElement("th");
-    thSurnameEl.textContent = "Surname";
-
-    const thEmailEl = document.createElement("th");
-    thEmailEl.textContent = "Email";
-
-    const thMessageEl = document.createElement("th");
-    thMessageEl.textContent = "Message";
-
-    tblRowEl.append(thNameEl, thSurnameEl, thEmailEl, thMessageEl);
-    tblHeadEl.append(tblRowEl);
-    table.append(tblHeadEl);
-  }
-
-  //   const { name, surname, email, message } = data;
-  //comment
-  const addNewRow = ({ name, surname, email, message }) => {
-    // const {name, surname, email, message} = data;
-    const trow = document.createElement("tr");
-    const tdName = document.createElement("td");
-    tdName.textContent = name;
-    const tdSurname = document.createElement("td");
-    tdSurname.textContent = surname;
-    const tdEmail = document.createElement("td");
-    tdEmail.textContent = email;
-    const tdMessage = document.createElement("td");
-    tdMessage.textContent = message;
-
-    trow.append(tdName, tdSurname, tdEmail, tdMessage);
-    return trow;
-  };
-  table.append(addNewRow(data));
-
-  //   const trEl = document.createElement('tr');
-  //   const tdEl = document.createElement('td');
+function objectFromForm() {
+  button.addEventListener("click", function (event) {
+    event.preventDefault();
+    console.log("click");
+    createObject();
+  });
 }
 
-console.log(
-  appendRowToTable({
-    name: "Rad",
-    surname: "Las",
-    email: "rlasiecki@gmail.com",
-    message: "Msg",
-  })
-);
-console.log(
-  appendRowToTable({
-    name: "Daw",
-    surname: "Las",
-    email: "dlasiecki@gmail.com",
-    message: "Msg1",
-  })
-);
+console.log(validateEmail("dlasiecki@gmail.com"));
+function createObject() {
+  const name = document.querySelector("#name").value;
+  const surname = document.querySelector("#surname").value;
+  const email = document.querySelector("#email").value;
+  const message = document.querySelector("#message").value;
+  let user = {};
+  let namewords = name.split(" ");
+  let surnameWords = surname.split(" ");
+  const regex = /\d/;
+  if (
+    !(namewords.length > 2) &&
+    !regex.test(name) &&
+    !(surnameWords.length > 2) &&
+    !regex.test(surname) &&
+    validateEmail(email) === true &&
+    name.length > 2 &&
+    surname.length > 3 &&
+    email.length > 1
+  ) {
+    user = { name, surname, email, message };
+  }
+
+  console.log(user);
+}
+
+objectFromForm();
