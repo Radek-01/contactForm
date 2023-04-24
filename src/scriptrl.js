@@ -1,6 +1,6 @@
-// function appendRowToTable(data) {
-//   const body = document.querySelector("body");
-//   let table = document.querySelector("table");
+function appendRowToTable(data) {
+  const body = document.querySelector("body");
+  let table = document.querySelector("table");
 
   if (!table) {
     table = document.createElement("table");
@@ -9,27 +9,29 @@
   table.classList.add("table");
   table.classList.add("table-striped");
   table.classList.add("table-bordered");
-  //prepare table header
+  //prepare table header and body
   if (!table.innerHTML) {
     const tblHeadEl = document.createElement("thead");
     const tblRowEl = document.createElement("tr");
 
-//     const thNameEl = document.createElement("th");
-//     thNameEl.textContent = "Name";
+    const thNameEl = document.createElement("th");
+    thNameEl.textContent = "Name";
 
-//     const thSurnameEl = document.createElement("th");
-//     thSurnameEl.textContent = "Surname";
+    const thSurnameEl = document.createElement("th");
+    thSurnameEl.textContent = "Surname";
 
-//     const thEmailEl = document.createElement("th");
-//     thEmailEl.textContent = "Email";
+    const thEmailEl = document.createElement("th");
+    thEmailEl.textContent = "Email";
 
-//     const thMessageEl = document.createElement("th");
-//     thMessageEl.textContent = "Message";
+    const thMessageEl = document.createElement("th");
+    thMessageEl.textContent = "Message";
 
-//     tblRowEl.append(thNameEl, thSurnameEl, thEmailEl, thMessageEl);
-//     tblHeadEl.append(tblRowEl);
-//     table.append(tblHeadEl);
-//   }
+    tblRowEl.append(thNameEl, thSurnameEl, thEmailEl, thMessageEl);
+    tblHeadEl.append(tblRowEl);
+    table.append(tblHeadEl);
+
+    table.append(document.createElement("tbody"));
+  }
 
   const addNewRow = ({ name, surname, email, message }) => {
     const dataArray = [name, surname, email, message];
@@ -43,7 +45,7 @@
     return trow;
   };
 
-  table.append(addNewRow(data));
+  table.querySelector("tbody").append(addNewRow(data));
 }
 
 console.log(
