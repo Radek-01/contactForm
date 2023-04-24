@@ -36,7 +36,7 @@ function appendRowToTable(data) {
   }
 
   //   const { name, surname, email, message } = data;
-
+  //comment
   const addNewRow = ({ name, surname, email, message }) => {
     // const {name, surname, email, message} = data;
     const trow = document.createElement("tr");
