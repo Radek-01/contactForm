@@ -1,1 +1,2 @@
-console('ciekawe co suę adwhue');
+"use script";
+console("ciekawe co suę adwhue");
