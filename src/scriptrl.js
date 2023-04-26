@@ -72,3 +72,4 @@ console.log(
     message: "Msg2",
   })
 );
+console.log("test");
