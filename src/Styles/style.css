@@ -1,10 +1,25 @@
+body{
+  background-color: rgb(124, 124, 118);
+}
 table {
-  margin-top: 50px;
   width: 90%;
   max-width: 600px;
+  margin: 50px auto;
+  background-color: aliceblue;
 }
 
 td,
 th {
   text-align: center;
+}
+form{
+  margin-top: 15px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  background-color: rgba(174, 185, 185, 0.733);
+  padding: 20px;
+}
+input, textarea{
+  margin-right: 15px;
 }
