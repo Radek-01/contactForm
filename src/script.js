@@ -19,7 +19,7 @@ function save() {
 function validateEmail(email) {
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return regex.test(email);
-}
+}git branch
 
 const form = document.querySelector("form");
 form.addEventListener("submit", function (event) {
