@@ -1,5 +1,7 @@
 "use strict";
+console.log();
 let contacts = [];
+
 const loadContacts = JSON.parse(localStorage.getItem("saveform"));
 console.log(loadContacts);
 if (loadContacts) {
@@ -21,6 +23,21 @@ function validateEmail(email) {
   return regex.test(email);
 }
 
+// function searchSameEmail(array, email) {
+//   let sameEmail = true;
+//   for (const object of array) {
+//     if (object.email.includes(email)) {
+//       sameEmail = false;
+//       break;
+//     }
+//   }
+//   return sameEmail;
+// }
+
+
+// console.log('OSME',contacts.some(contact=>contact.email === 'dlasiecki@gmail.com'));
+
+
 const form = document.querySelector("form");
 form.addEventListener("submit", function (event) {
   handleSubmit(event);
@@ -34,7 +51,8 @@ function handleSubmit(event) {
   const surname = formData.get("surname");
   const email = formData.get("email");
   const message = formData.get("message");
-
+  // console.log(name);
+  let userInitials = `${name[0]}${surname[0]}`.toLowerCase();
   let namewords = name.split(" ");
   let surnameWords = surname.split(" ");
   const regex = /\d/;
@@ -45,17 +63,20 @@ function handleSubmit(event) {
     !regex.test(surname) &&
     validateEmail(email) &&
     surname.length > 3 &&
-    email.length > 1
+    email.length > 1 &&
+    !contacts.some(contact => contact.email === email)
   ) {
     const contactData = {
       name,
       surname,
+      userInitials,
       email,
       message,
     };
 
     appendRowToTable(contactData);
     contacts.push(contactData);
+    console.log(userInitials.toLowerCase());
     save();
   }
 }
@@ -72,30 +93,14 @@ function appendRowToTable(data) {
   table.classList.add("table-bordered");
   //prepare table header and body
   if (!table.innerHTML) {
-    const tblHeadEl = document.createElement("thead");
-    const tblRowEl = document.createElement("tr");
-
-    const thNameEl = document.createElement("th");
-    thNameEl.textContent = "Name";
-
-    const thSurnameEl = document.createElement("th");
-    thSurnameEl.textContent = "Surname";
-
-    const thEmailEl = document.createElement("th");
-    thEmailEl.textContent = "Email";
-
-    const thMessageEl = document.createElement("th");
-    thMessageEl.textContent = "Message";
-
-    tblRowEl.append(thNameEl, thSurnameEl, thEmailEl, thMessageEl);
-    tblHeadEl.append(tblRowEl);
-    table.append(tblHeadEl);
+    const tableHeader = `<thead><tr><th>Name</th><th>Surname</th><th>User Initials</th><th>Email</th><th>Message</th></tr></thead>`;
+    table.insertAdjacentHTML("afterbegin", tableHeader);
 
     table.append(document.createElement("tbody"));
   }
 
-  const addNewRow = ({ name, surname, email, message }) => {
-    const dataArray = [name, surname, email, message];
+  const addNewRow = ({ name, surname, userInitials, email, message }) => {
+    const dataArray = [name, surname, userInitials, email, message];
     // const {name, surname, email, message} = data;
     const trow = document.createElement("tr");
     dataArray.forEach((value) => {
@@ -148,3 +153,54 @@ function appendRowToTable(data) {
 // }
 
 // objectFromForm();
+// function appendRowToTable(data) {
+//   const body = document.querySelector("body");
+//   let table = document.querySelector("table");
+
+//   if (!table) {
+//     table = document.createElement("table");
+//     body.append(table);
+//   }
+//   table.classList.add("table");
+//   table.classList.add("table-striped");
+//   table.classList.add("table-bordered");
+//   //prepare table header and body
+//   if (!table.innerHTML) {
+//     const tblHeadEl = document.createElement("thead");
+//     const tblRowEl = document.createElement("tr");
+
+//     const thNameEl = document.createElement("th");
+//     thNameEl.textContent = "Name";
+
+//     const thSurnameEl = document.createElement("th");
+//     thSurnameEl.textContent = "Surname";
+
+//     const thEmailEl = document.createElement("th");
+//     thEmailEl.textContent = "Email";
+
+//     const thMessageEl = document.createElement("th");
+//     thMessageEl.textContent = "Message";
+
+//     tblRowEl.append(thNameEl, thSurnameEl, thEmailEl, thMessageEl);
+//     tblHeadEl.append(tblRowEl);
+//     table.append(tblHeadEl);
+
+//     table.append(document.createElement("tbody"));
+//   }
+
+//   const addNewRow = ({ name, surname, email, message }) => {
+//     const dataArray = [name, surname, email, message];
+//     // const {name, surname, email, message} = data;
+//     const trow = document.createElement("tr");
+//     dataArray.forEach((value) => {
+//       const td = document.createElement("td");
+//       td.textContent = value;
+//       trow.append(td);
+//     });
+//     return trow;
+//   };
+
+//   table.querySelector("tbody").append(addNewRow(data));
+
+//   console.log(contacts);
+// }
