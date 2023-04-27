@@ -1,7 +1,7 @@
 "use strict";
 console.log();
 let contacts = [];
-
+let contactIdx = 0;
 const loadContacts = JSON.parse(localStorage.getItem("saveform"));
 console.log(loadContacts);
 if (loadContacts) {
@@ -34,9 +34,7 @@ function validateEmail(email) {
 //   return sameEmail;
 // }
 
-
 // console.log('OSME',contacts.some(contact=>contact.email === 'dlasiecki@gmail.com'));
-
 
 const form = document.querySelector("form");
 form.addEventListener("submit", function (event) {
@@ -64,7 +62,7 @@ function handleSubmit(event) {
     validateEmail(email) &&
     surname.length > 3 &&
     email.length > 1 &&
-    !contacts.some(contact => contact.email === email)
+    !contacts.some((contact) => contact.email === email)
   ) {
     const contactData = {
       name,
@@ -103,11 +101,17 @@ function appendRowToTable(data) {
     const dataArray = [name, surname, userInitials, email, message];
     // const {name, surname, email, message} = data;
     const trow = document.createElement("tr");
+
     dataArray.forEach((value) => {
       const td = document.createElement("td");
       td.textContent = value;
       trow.append(td);
     });
+    trow.setAttribute("id", `${contactIdx + 1}`);
+    contactIdx++;
+    trow.addEventListener('click', function (){
+      console.log(trow.id);
+    })
     return trow;
   };
 
@@ -117,7 +121,6 @@ function appendRowToTable(data) {
 }
 
 // const button = document.querySelector("#submitButton");
-
 // function objectFromForm() {
 //   button.addEventListener("click", function (event) {
 //     event.preventDefault();
